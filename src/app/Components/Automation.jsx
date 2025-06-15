@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
-import styles from './page.module.css';
+import styles from './Auto.module.css';
 
 const HeroSection = () => {
   const topScrollRef = useRef(null);
@@ -77,13 +76,11 @@ const HeroSection = () => {
           dedicated to delivering exceptional craftsmanship tailored to your specifications.
         </p>
         <div className={styles.heroButtons}>
-          <Link href="/services">
-            <button className={styles.primaryButton}>
-              Our Services
-            </button>
-          </Link>
+          <button className={styles.primaryButton}>
+            Button
+          </button>
           <button className={styles.secondaryButton}>
-            Contact Us
+            Button
           </button>
         </div>
       </div>

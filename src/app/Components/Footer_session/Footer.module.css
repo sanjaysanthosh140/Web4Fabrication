@@ -1,0 +1,133 @@
+.footerContainer {
+    background-color: #000;
+    color: #fff;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footerContent {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logoSection {
+    margin-bottom: 2rem;
+  }
+  
+  .footerLogo {
+    filter: brightness(0) invert(1); /* Ensures logo is white on dark background */
+    width: 80px; /* Adjust size as needed */
+    height: auto;
+  }
+  
+  .footerNav {
+    display: flex;
+    flex-wrap: wrap; /* Allows links to wrap on smaller screens */
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+  }
+  
+  .footerNav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footerNav a:hover {
+    color: #aaa;
+  }
+  
+  .footerSeparator {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #333;
+    margin: 2rem 0; /* Adjust vertical spacing */
+  }
+  
+  .footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 1rem; /* Space after separator */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1rem; /* Gap between copyright and policy links when wrapped */
+  }
+  
+  .copyright {
+    font-size: 0.85rem;
+    color: #ccc;
+    flex-shrink: 0; /* Prevent copyright from shrinking */
+  }
+  
+  .policyLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-end;
+  }
+  
+  .policyLinks a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+  }
+  
+  .policyLinks a:hover {
+    color: #fff;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .footerContainer {
+      padding: 2.5rem 1.5rem;
+    }
+  
+    .footerNav {
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+  
+    .footerBottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+  
+    .policyLinks {
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footerContainer {
+      padding: 2rem 1rem;
+    }
+  
+    .footerNav {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  
+    .footerNav a,
+    .copyright,
+    .policyLinks a {
+      font-size: 0.8rem;
+    }
+  
+    .footerSeparator {
+      margin: 1.5rem 0;
+    }
+  }
