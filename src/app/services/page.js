@@ -1,141 +1,129 @@
-'use client'
-import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
+'use client';
+
+import {useState} from 'react';
 import Image from 'next/image';
-import style from "./services.module.css";
+import styles from './services.module.css';
+
+// NOTE: All image imports remain the same.
+import glass_door from '../../../public/assets/glass_store.jpg';
+import tvs from '../../../public/assets/tv.jpg';
+import partition from '../../../public/assets/partition.jpg';
+import sink from '../../../public/assets/sink.jpg';
+import wall from '../../../public/assets/wall2.jpg';
+import bathroom from '../../../public/assets/bathroom.jpg';
+import kichen from '../../../public/assets/kichen1.jpg';
+import fargola from '../../../public/assets/fargola2.jpg';
 
 const services = [
   {
     id: 1,
-    title: 'Custom Aluminium Fabrication Services',
-    description:
-      'Professional aluminium fabrication services tailored to your specific needs. From design to installation, we handle it all with precision and care.',
+    title: 'Custom Aluminium Fabrication',
     tagline: 'Premium Service',
-    image: '/images/aluminium-fabrication.jpg', // Add your image path here
-    reverse: false,
+    description: 'Professional aluminium fabrication tailored to your exact requirements. From concept to installation, we handle every step with precision.',
+    image: glass_door,
   },
   {
     id: 2,
     title: 'Precision Cutting & Manufacturing',
-    description:
-      'State-of-the-art cutting technology for precise aluminium components. Perfect for industrial and commercial applications requiring exact specifications.',
     tagline: 'Expert Solutions',
-    image: '/images/precision-cutting.jpg', // Add your image path here
-    reverse: true,
+    description: 'State‑of‑the‑art machining for industrial and commercial components that demand micron‑level accuracy.',
+    image: tvs,
   },
   {
     id: 3,
-    title: 'Assembly & Installation Services',
-    description:
-      'Complete assembly and installation services for all your aluminium structures. Professional team ensuring quality work and timely delivery.',
+    title: 'Assembly & Installation',
     tagline: 'Quality Work',
-    image: '/images/assembly-installation.jpg', // Add your image path here
-    reverse: false,
+    description: 'A veteran crew that assembles and installs complex aluminium structures safely and on schedule.',
+    image: partition,
+  },
+  {
+    id: 4,
+    title: 'Custom Aluminium Fabrication',
+    tagline: 'Premium Service',
+    description: 'Professional aluminium fabrication tailored to your exact requirements. From concept to installation, we handle every step with precision.',
+    image: sink,
+  },
+  {
+    id: 5,
+    title: 'Precision Cutting & Manufacturing',
+    tagline: 'Expert Solutions',
+    description: 'State‑of‑the‑art machining for industrial and commercial components that demand micron‑level accuracy.',
+    image: wall,
+  },
+  {
+    id: 6,
+    title: 'Assembly & Installation',
+    tagline: 'Quality Work',
+    description: 'A veteran crew that assembles and installs complex aluminium structures safely and on schedule.',
+    image: bathroom,
+  },
+  {
+    id: 7,
+    title: 'Kitchen Fabrication',
+    tagline: 'Quality Work',
+    description: 'Custom kitchen solutions with premium aluminum materials, designed for both functionality and aesthetics.',
+    image: kichen,
+  },
+  {
+    id: 8,
+    title: 'Pergola Installation',
+    tagline: 'Outdoor Solutions',
+    description: 'Beautiful and durable pergola structures that enhance your outdoor living space with style and shade.',
+    image: fargola,
   },
 ];
 
-const Services = () => {
-  const sectionRefs = useRef([]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(style.visible);
-          }
-        });
-      },
-      { threshold: 0.1 }
+export default function Services() {
+  const [flipped, setFlipped] = useState([]);
+
+  const toggleFlip = (id) => {
+    setFlipped((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
-
-    const elements = document.querySelectorAll(`.${style.serviceCard}, .${style.serviceHeader}`);
-    elements.forEach((el) => {
-      observer.observe(el);
-    });
-
-    return () => {
-      elements.forEach((el) => {
-        observer.unobserve(el);
-      });
-    };
-  }, []);
+  };
 
   return (
-    <section className={style.serviceWrapper}>
-      <div className={`${style.serviceHeader}`}>
-        <p className={style.pretitle}>Our Services</p>
-        <h2 className={style.title}>Professional Aluminium Solutions</h2>
-        <p className={style.subtitle}>
-          Delivering exceptional quality and precision across all our service offerings
+    <section className={styles.servicesWrapper}>
+      <header className={styles.servicesHeader}>
+        <p className={styles.pretitle}>Our Services</p>
+        <h2 className={styles.titleGradient}>Professional Aluminium Solutions</h2>
+        <p className={styles.subtitle}>
+          Delivering exceptional quality and precision across every project
         </p>
-      </div>
+      </header>
 
-      {services.map(({ id, title, description, tagline, image, reverse }, index) => (
-        <div 
-          key={id} 
-          className={`${style.serviceCard} ${reverse ? style.reverse : ''}`}
-          ref={el => sectionRefs.current[index] = el}
-        >
-          <div className={style.serviceText}>
-            <div className={style.contentWrapper}>
-              <p className={style.tagline}>{tagline}</p>
-              <h3 className={style.cardTitle}>{title}</h3>
-              <p className={style.description}>{description}</p>
-              <div className={style.buttons}>
-                <button className={style.btnPrimary}>
-                  <span>Get Quote</span>
-                  <div className={style.btnGlow}></div>
-                </button>
-                <button className={style.btnSecondary}>
-                  <span>Learn More</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
+      <div className={styles.grid}>
+        {services.map((svc, index) => (
+          <article
+            key={svc.id}
+            className={`${styles.card} ${flipped.includes(svc.id) ? styles.flipped : ''}`}
+            onClick={() => toggleFlip(svc.id)}
+            style={{'--bg-image': `url(${svc.image.src})`}}
+          >
+            <div className={styles.cornerBrackets}>
+              <span />
+              <span />
+              <span />
+              <span />
             </div>
-          </div>
-          
-          <div className={style.serviceImage}>
-            <div className={style.imageContainer}>
-              {/* Fallback for development - remove this in production */}
-              <div className={style.imagePlaceholder}>
-                <div className={style.imageOverlay}></div>
-                <div className={style.placeholderText}>
-                  {title.split(' ')[0]}
+
+            <div className={styles.inner}>
+              <div className={styles.front}>
+                <div className={styles.frontContent}>
+                  <h3 className={styles.cardTitleFront}>{svc.title}</h3>
+                  <p className={styles.cardTaglineFront}>{svc.tagline}</p>
                 </div>
               </div>
-              
-              {/* Next.js Image component - uncomment and use this in production */}
-              {/* 
-              <Image
-                src={image}
-                alt={title}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className={style.realImage}
-                priority={index === 0}
-              />
-              <div className={style.imageOverlay}></div>
-              */}
-              
-              <div className={style.cornerAccent}></div>
+              <div className={styles.back}>
+                <h3 className={styles.cardTitle}>{svc.title}</h3>
+                <p className={styles.tagline}>{svc.tagline}</p>
+                <p className={styles.desc}>{svc.description}</p>
+              </div>
             </div>
-          </div>
-        </div>
-      ))}
-
-      <Link href="/" className={style.backLink}>
-        <button className={style.backButton}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
-          <span>Back to Home</span>
-        </button>
-      </Link>
+          </article>
+        ))}
+      </div>
     </section>
   );
-};
-
-export default Services;
+}

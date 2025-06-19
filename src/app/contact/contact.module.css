@@ -1,0 +1,109 @@
+/* ──────────  ROOT  ────────── */
+
+:root {
+  --accent: #3b82f6;          /* blue‑500 */
+  --dark-bg: #0d0d0d;         /* near‑black */
+  --text-main: #ffffff;
+  --text-muted: #aaaaaa;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-hover: rgba(255, 255, 255, 0.1);
+}
+
+/* ──────────  SECTION  ────────── */
+
+.wrapper {
+  padding: 4rem 1rem;
+  background: var(--dark-bg);
+  color: var(--text-main);
+  text-align: center;
+}
+
+.kicker {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.heading {
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* ──────────  GRID LAYOUT  ────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ──────────  CARD  ────────── */
+
+.card {
+  position: relative;
+  padding: 2rem 1.7rem;
+  border: 1px solid var(--glass);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  background: var(--glass);
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  background: var(--glass-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* ──────────  CARD CONTENT  ────────── */
+
+.icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.blurb {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+/* Highlight / Action text */
+.action {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+  word-break: break-word;
+}
+
+/* ──────────  RESPONSIVE TWEAKS  ────────── */
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.7rem;
+  }
+  .card {
+    padding: 1.7rem 1.4rem;
+  }
+}

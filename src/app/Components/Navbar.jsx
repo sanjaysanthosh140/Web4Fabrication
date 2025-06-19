@@ -1,7 +1,7 @@
-'use client'
-import Link from 'next/link';
-import { useState } from 'react';
-import styles from './Navbar.module.css';
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+import styles from "./Navbar.module.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ const NavBar = () => {
   };
 
   const toggleDropdown = () => {
-     setIsDropdownOpen((prev) => !prev);
+    setIsDropdownOpen((prev) => !prev);
   };
 
   return (
@@ -20,43 +20,37 @@ const NavBar = () => {
       <button
         className={styles.hamburger}
         onClick={toggleMenu}
-        aria-label='Toggle navigation menu'
+        aria-label="Toggle navigation menu"
       >
         &#9776;
       </button>
       <div className={styles.logo}>
-        <Link href='/'>
+        <Link href="/">
           <img
-            src='/logo.svg' // Assuming you have a logo.svg in your public directory
-            alt='Loop Logo'
+            src="/logo.svg" // Assuming you have a logo.svg in your public directory
+            alt="Loop Logo"
             width={40}
             height={40}
           />
         </Link>
       </div>
-      <ul className={`${styles.navLinks} ${isOpen ? styles.open : ''}`}>
+      <ul className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
         <li>
-          <Link href='/'>
-            Home Page
-          </Link>
+          <Link href="/">Home Page</Link>
         </li>
         <li>
-          <Link href='/services'>
-            Services
-          </Link>
+          <Link href="/services">Services</Link>
         </li>
         <li>
-          <Link href='/contact'>
-            Contact Us
-          </Link>
+          <Link href="/details">Details</Link>
         </li>
-        
-
+        <li>
+          <Link href="/contact">Contact Us</Link>
+        </li>
       </ul>
       {/* <button className={styles.learnButton}> */}
-        {/* Learn */}
+      {/* Learn */}
       {/* </button> */}
-
     </nav>
   );
 };

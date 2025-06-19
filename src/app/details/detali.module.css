@@ -1,0 +1,206 @@
+/* =========================================================
+   detali.module.css • Refactored Version
+   ========================================================= */
+
+.servicesWrapper {
+  background-color: #0A0A0A; /* Dark background for contrast */
+  padding: 6rem 2rem;
+  box-sizing: border-box;
+}
+
+.servicesHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pretitle {
+  color: #A0A0A0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.title {
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.subtitle {
+  color: #A0A0A0;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; /* Reduced gap for a tighter grid */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Service Card */
+.serviceCard {
+  position: relative;
+  height: 300px; /* Fixed height for consistent card sizing */
+  border-radius: 20px; /* **Increased border-radius for more pronounced curve** */
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  display: flex;
+  align-items: flex-end; /* Align content to the bottom */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle initial shadow */
+  /* **Added subtle 3D transform for a gentle initial curve** */
+  transform: perspective(1000px) rotateX(1deg) rotateY(1deg);
+}
+
+.serviceCard:active { /* Use :active for a more immediate click feedback */
+  transform: scale(0.98) perspective(1000px) rotateX(1deg) rotateY(1deg); /* Maintain slight curve on active */
+}
+
+.serviceCard.active {
+  transform: translateY(-10px) perspective(1000px) rotateX(0deg) rotateY(0deg); /* Flatten slightly and lift on active */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow when active */
+}
+
+.cardMedia {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute; /* Position to fill the card */
+  top: 0;
+  left: 0;
+  transition: filter 0.6s ease-in-out; /* Smooth blur transition */
+  z-index: 1; /* Below overlays */
+}
+
+.cardMedia.blurred {
+  filter: blur(10px) brightness(0.6); /* Stronger blur and darken when active */
+}
+
+/* Frosted Glass Overlay */
+.frostedGlassOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* **Adjusted background for crystal clear look** */
+  background-color: rgba(255, 255, 255, 0.03); /* Very transparent white tint */
+  /* **Stronger blur and saturation for crystal effect** */
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%); /* Safari support */
+  border-radius: 20px; /* **Match card border-radius** */
+  pointer-events: none; /* Allow clicks to pass through to the card */
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  z-index: 2; /* Above media, below content */
+  /* **Added subtle border for crystal edge definition** */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.serviceCard.active .frostedGlassOverlay {
+  opacity: 1;
+}
+
+/* Content Popup (Bottom-to-top) */
+.contentPopup {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%; /* Occupy full card height for slide-up effect */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align content to the bottom */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%); /* Slightly darker gradient for content */
+  color: #FFFFFF;
+  transform: translateY(100%); /* Start completely off-screen */
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide-up */
+  border-radius: 20px; /* **Match card border-radius** */
+  box-sizing: border-box; /* Include padding in height */
+  padding-top: 50%; /* Adjust to ensure content starts from the bottom */
+  z-index: 3; /* Above frosted glass */
+}
+
+.serviceCard.active .contentPopup {
+  transform: translateY(0); /* Slide up to reveal */
+}
+
+.popupContent {
+  padding: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px); /* Initial slight offset */
+  transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s; /* Delay for content fade-in */
+}
+
+.serviceCard.active .popupContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cardTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  color: #E0E0E0;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none; /* Remove default list bullets */
+  margin-top: 1rem;
+}
+
+.tagItem {
+  background-color: rgba(255, 255, 255, 0.15); /* Slightly more prominent tag background */
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  color: #F0F0F0;
+  font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .cardsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .serviceCard {
+    height: 280px; /* Slightly smaller cards on mobile */
+  }
+
+  .cardTitle {
+    font-size: 1.4rem;
+  }
+
+  .popupContent {
+    padding: 1rem;
+  }
+}
