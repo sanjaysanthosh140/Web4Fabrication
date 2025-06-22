@@ -1,14 +1,14 @@
 /* ──────────  ROOT  ────────── */
+.contactPage{
 
-:root {
   --accent: #3b82f6;          /* blue‑500 */
   --dark-bg: #0d0d0d;         /* near‑black */
   --text-main: #ffffff;
   --text-muted: #aaaaaa;
   --glass: rgba(255, 255, 255, 0.05);
   --glass-hover: rgba(255, 255, 255, 0.1);
-}
 
+}
 /* ──────────  SECTION  ────────── */
 
 .wrapper {

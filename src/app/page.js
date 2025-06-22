@@ -146,7 +146,7 @@ const HeroSection = () => {
             </button>
           </Link>
           <button className={styles.secondaryButton}>
-            Contact Us
+              <a  href="tel:9605482721" className={styles.calls}>Contact</a>
           </button>
         </div>
       </div>

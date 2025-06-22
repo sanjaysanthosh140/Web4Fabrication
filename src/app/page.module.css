@@ -20,6 +20,9 @@
     margin-right: -50vw;
   }
   
+  
+  
+  
   .heroContent {
     max-width: 1200px;
     width: 90%;
@@ -52,7 +55,10 @@
     gap: 1.5rem;
     flex-wrap: wrap;
   }
-  
+.calls{
+  text-decoration: none;
+  color:#fff;
+}
   .primaryButton,
   .secondaryButton {
     padding: 1rem 2.5rem;
@@ -78,13 +84,13 @@
   
   .secondaryButton {
     background-color: transparent;
-    color: #fff;
+    color: #000;
     border: 2px solid #fff;
   }
   
   .secondaryButton:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: #000;
+    color: #0000;
     transform: translateY(-2px);
   }
   

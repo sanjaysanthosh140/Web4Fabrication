@@ -3,7 +3,8 @@
   ========================================================= */
 
 /* ---------- tokens (No Changes) ---------- */
-:root {
+
+.servicesPage  {
   --primary: #c0c0c0;
   --secondary: #c0c0c0;
   --bg-dark: #000;
