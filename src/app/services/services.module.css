@@ -1,12 +1,12 @@
 /* =========================================================
-   services.module.css • Header FX Refinement
-   ========================================================= */
+  services.module.css • Header FX Refinement
+  ========================================================= */
 
 /* ---------- tokens (No Changes) ---------- */
 :root {
   --primary: #c0c0c0;
   --secondary: #c0c0c0;
-  --bg-dark: #0f172a;
+  --bg-dark: #000;
   --glass: rgba(15, 23, 42, 0.75);
   --text-main: #f3f4f6;
   --text-muted: #9ca3af;
@@ -27,25 +27,28 @@
   background: var(--bg-dark);
   color: var(--text-main);
   min-height: 100vh;
-  padding: 6rem 1.5rem;
+  padding: 6rem 1.5rem; /* Base padding for larger screens */
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; /* Prevent horizontal scroll */
 }
 
 .servicesHeader {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 5rem; /* Base margin for larger screens */
+  width: 100%; /* Ensure header takes full width for centering */
+  max-width: 900px; /* Constrain header width for readability */
+  padding: 0 1rem; /* Add some horizontal padding for text on smaller screens */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 /* MODIFIED: .pretitle ("Our Services") */
 .pretitle {
-  font-size: 1.1rem; /* Slightly larger for better effect */
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* Fluid font size for better responsiveness */
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  /* Glass effect for the pre-title */
   background: linear-gradient(
     90deg,
     var(--text-muted) 0%,
@@ -55,62 +58,118 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Removed pill background for a cleaner look */
   padding: 0;
 }
 
 /* MODIFIED: .titleGradient ("Professional Aluminium Solutions") */
 .titleGradient {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem); /* Fluid font size for main title */
   font-weight: 800;
   line-height: 1.2;
-  margin: 0.5rem 0 1rem 0; /* Adjusted margin */
+  margin: 0.5rem 0 1rem 0;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  /* Shining glass effect gradient */
   background-image: linear-gradient(
     90deg,
     var(--secondary),
     var(--primary),
     #ffffff,
-    /* Sharp highlight for the "shine" */ var(--primary),
+    var(--primary),
     var(--secondary)
   );
-  background-size: 200% auto; /* Make background larger than the element */
-  animation: shine 10s linear infinite; /* Apply the animation */
+  background-size: 200% auto;
+  animation: shine 10s linear infinite;
 }
 
 .subtitle {
   max-width: 700px;
-  margin-inline: auto;
+  margin-inline: auto; /* Centers the subtitle */
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem); /* Fluid font size for subtitle */
   line-height: 1.6;
+  padding: 0 1rem; /* Add horizontal padding for smaller screens */
 }
 
-/* ... (The rest of the CSS for .grid, .card, etc. remains unchanged) ... */
 .grid {
   width: 100%;
   max-width: 1400px;
   display: grid;
-  gap: 2.5rem;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem; /* Base gap between cards */
+  grid-template-columns: repeat(3, 1fr); /* Default 3 columns */
+  padding: 0 1.5rem; /* Add horizontal padding to the grid */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
+
+/* Responsive Grid Adjustments */
 @media (max-width: 1200px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    gap: 2rem; /* Slightly reduced gap */
+  }
+  .servicesWrapper {
+    padding: 5rem 1rem; /* Adjust overall padding */
+  }
+  .servicesHeader {
+    margin-bottom: 4rem; /* Reduce header margin */
   }
 }
+
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr; /* Single column on small screens */
+    gap: 2.5rem; /* Restore gap for single column */
+    padding: 0 1rem; /* Adjust grid padding */
+  }
+  .servicesWrapper {
+    padding: 4rem 0.5rem; /* Further adjust overall padding */
+  }
+  .servicesHeader {
+    margin-bottom: 3rem; /* Further reduce header margin */
+  }
+  .card {
+    height: 250px; /* Adjust card height for smaller screens */
+  }
+  .front,
+  .back {
+    padding: 1.2rem; /* Adjust padding inside card for smaller screens */
+  }
+  .cardTitleFront {
+    font-size: 1.2rem; /* Smaller title on front */
+  }
+  .cardTaglineFront {
+    font-size: 0.75rem; /* Smaller tagline on front */
+  }
+  .cardTitle {
+    font-size: 1.1rem; /* Smaller title on back */
+  }
+  .tagline {
+    font-size: 0.7rem; /* Smaller tagline on back */
+  }
+  .desc {
+    font-size: 0.8rem; /* Smaller description on back */
   }
 }
+
+@media (max-width: 480px) {
+  .servicesWrapper {
+    padding: 3rem 0.5rem; /* Minimal padding on very small screens */
+  }
+  .servicesHeader {
+    margin-bottom: 2.5rem; /* Even smaller header margin */
+  }
+  .grid {
+    gap: 2rem; /* Slightly smaller gap */
+  }
+  .card {
+    height: 220px; /* Further reduce card height */
+  }
+}
+
+
 .card {
   position: relative;
-  height: 280px;
+  height: 280px; /* Base height */
   cursor: pointer;
   perspective: 1500px;
   transition: transform 0.4s ease;
@@ -184,7 +243,7 @@
 }
 .front {
   justify-content: flex-end;
-  padding: 1.5rem;
+  padding: 1.5rem; /* Base padding */
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 60%);
 }
 .frontContent {
@@ -196,13 +255,13 @@
   transform: translateY(-4px);
 }
 .cardTitleFront {
-  font-size: 1.3rem;
+  font-size: 1.3rem; /* Base font size */
   font-weight: 700;
   color: var(--text-main);
   line-height: 1.2;
 }
 .cardTaglineFront {
-  font-size: 0.8rem;
+  font-size: 0.8rem; /* Base font size */
   font-weight: 500;
   color: var(--primary);
   text-transform: uppercase;
@@ -210,7 +269,7 @@
 .back {
   transform: rotateY(180deg);
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem; /* Base padding */
   background-color: var(--glass);
   backdrop-filter: blur(20px) brightness(0.85);
   -webkit-backdrop-filter: blur(20px) brightness(0.85);
@@ -221,13 +280,13 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 .cardTitle {
-  font-size: 1.25rem;
+  font-size: 1.25rem; /* Base font size */
   font-weight: 700;
   margin-bottom: 0.6rem;
   color: var(--text-main);
 }
 .tagline {
-  font-size: 0.75rem;
+  font-size: 0.75rem; /* Base font size */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -235,7 +294,7 @@
   margin-bottom: 1rem;
 }
 .desc {
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* Base font size */
   color: var(--text-muted);
   line-height: 1.6;
 }

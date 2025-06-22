@@ -1,21 +1,28 @@
 /* =========================================================
-   detali.module.css • Refactored Version
-   ========================================================= */
+  detali.module.css • Refactored Version
+  ========================================================= */
 
 .servicesWrapper {
   background-color: #0A0A0A; /* Dark background for contrast */
-  padding: 6rem 2rem;
+  padding: 6rem 2rem; /* Base padding for larger screens */
   box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scroll on smaller screens */
 }
 
 .servicesHeader {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 4rem; /* Base margin for header */
+  width: 100%; /* Ensure header takes full width for centering */
+  max-width: 900px; /* Constrain header width for readability */
+  margin-left: auto; /* Center the header block */
+  margin-right: auto; /* Center the header block */
+  padding: 0 1rem; /* Add horizontal padding for smaller screens */
+  box-sizing: border-box;
 }
 
 .pretitle {
   color: #A0A0A0;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem); /* Fluid font size */
   font-weight: 500;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
@@ -24,64 +31,71 @@
 
 .title {
   color: #FFFFFF;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4.5vw, 2.5rem); /* Fluid font size for main title */
   font-weight: 600;
   margin: 0.5rem 0;
+  line-height: 1.2;
 }
 
 .subtitle {
   color: #A0A0A0;
   max-width: 600px;
-  margin: 0 auto;
-  font-size: 1.1rem;
+  margin: 0 auto; /* Center the subtitle paragraph */
+  font-size: clamp(1rem, 1.8vw, 1.1rem); /* Fluid font size for subtitle */
   line-height: 1.5;
+  padding: 0 1rem; /* Add horizontal padding for smaller screens */
 }
 
 .cardsGrid {
   display: grid;
+  /* Responsive grid columns:
+     - auto-fill: automatically adjusts number of columns
+     - minmax(300px, 1fr): cards are at least 300px wide, but grow to fill available space
+  */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem; /* Reduced gap for a tighter grid */
+  gap: 1.5rem; /* Base gap between cards */
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; /* Center the grid container */
+  padding: 0 1rem; /* Add horizontal padding to the grid */
+  box-sizing: border-box;
 }
 
 /* Service Card */
 .serviceCard {
   position: relative;
   height: 300px; /* Fixed height for consistent card sizing */
-  border-radius: 20px; /* **Increased border-radius for more pronounced curve** */
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   display: flex;
-  align-items: flex-end; /* Align content to the bottom */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle initial shadow */
-  /* **Added subtle 3D transform for a gentle initial curve** */
+  align-items: flex-end;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transform: perspective(1000px) rotateX(1deg) rotateY(1deg);
 }
 
-.serviceCard:active { /* Use :active for a more immediate click feedback */
-  transform: scale(0.98) perspective(1000px) rotateX(1deg) rotateY(1deg); /* Maintain slight curve on active */
+.serviceCard:active {
+  transform: scale(0.98) perspective(1000px) rotateX(1deg) rotateY(1deg);
 }
 
 .serviceCard.active {
-  transform: translateY(-10px) perspective(1000px) rotateX(0deg) rotateY(0deg); /* Flatten slightly and lift on active */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow when active */
+  transform: translateY(-10px) perspective(1000px) rotateX(0deg) rotateY(0deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 .cardMedia {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute; /* Position to fill the card */
+  position: absolute;
   top: 0;
   left: 0;
-  transition: filter 0.6s ease-in-out; /* Smooth blur transition */
-  z-index: 1; /* Below overlays */
+  transition: filter 0.6s ease-in-out;
+  z-index: 1;
 }
 
 .cardMedia.blurred {
-  filter: blur(10px) brightness(0.6); /* Stronger blur and darken when active */
+  filter: blur(10px) brightness(0.6);
 }
 
 /* Frosted Glass Overlay */
@@ -91,17 +105,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* **Adjusted background for crystal clear look** */
-  background-color: rgba(255, 255, 255, 0.03); /* Very transparent white tint */
-  /* **Stronger blur and saturation for crystal effect** */
+  background-color: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px) saturate(200%);
-  -webkit-backdrop-filter: blur(20px) saturate(200%); /* Safari support */
-  border-radius: 20px; /* **Match card border-radius** */
-  pointer-events: none; /* Allow clicks to pass through to the card */
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border-radius: 20px;
+  pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease-out;
-  z-index: 2; /* Above media, below content */
-  /* **Added subtle border for crystal edge definition** */
+  z-index: 2;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -115,29 +126,29 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100%; /* Occupy full card height for slide-up effect */
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Align content to the bottom */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%); /* Slightly darker gradient for content */
+  justify-content: flex-end;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
   color: #FFFFFF;
-  transform: translateY(100%); /* Start completely off-screen */
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide-up */
-  border-radius: 20px; /* **Match card border-radius** */
-  box-sizing: border-box; /* Include padding in height */
-  padding-top: 50%; /* Adjust to ensure content starts from the bottom */
-  z-index: 3; /* Above frosted glass */
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding-top: 50%;
+  z-index: 3;
 }
 
 .serviceCard.active .contentPopup {
-  transform: translateY(0); /* Slide up to reveal */
+  transform: translateY(0);
 }
 
 .popupContent {
-  padding: 1.5rem;
+  padding: 1.5rem; /* Base padding */
   opacity: 0;
-  transform: translateY(20px); /* Initial slight offset */
-  transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s; /* Delay for content fade-in */
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
 }
 
 .serviceCard.active .popupContent {
@@ -146,14 +157,14 @@
 }
 
 .cardTitle {
-  font-size: 1.6rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.6rem); /* Fluid font size */
   font-weight: 700;
   margin: 0 0 0.75rem 0;
   line-height: 1.3;
 }
 
 .cardDescription {
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 1.5vw, 0.95rem); /* Fluid font size */
   color: #E0E0E0;
   margin-bottom: 1rem;
   line-height: 1.5;
@@ -164,15 +175,16 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0;
-  list-style: none; /* Remove default list bullets */
+  list-style: none;
   margin-top: 1rem;
+  justify-content: flex-start; /* Align tags to the start */
 }
 
 .tagItem {
-  background-color: rgba(255, 255, 255, 0.15); /* Slightly more prominent tag background */
+  background-color: rgba(255, 255, 255, 0.15);
   padding: 0.4rem 0.9rem;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem); /* Fluid font size */
   white-space: nowrap;
   color: #F0F0F0;
   font-weight: 500;
@@ -181,26 +193,63 @@
 /* Responsive Adjustments */
 @media (max-width: 900px) {
   .cardsGrid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust min card width */
+    gap: 1.25rem; /* Slightly reduced gap */
+    padding: 0 0.75rem; /* Reduce grid padding */
+  }
+
+  .serviceCard {
+    height: 280px; /* Maintain height or slightly reduce */
+  }
+
+  .popupContent {
+    padding: 1.2rem; /* Adjust popup content padding */
   }
 }
 
 @media (max-width: 600px) {
+  .servicesWrapper {
+    padding: 4rem 1rem; /* Adjust overall section padding for mobile */
+  }
+
+  .servicesHeader {
+    margin-bottom: 3rem; /* Reduce header margin on mobile */
+    padding: 0 0.5rem; /* Further reduce header padding */
+  }
+
   .cardsGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr; /* Single column on small mobile devices */
+    gap: 1.5rem; /* Adjust gap for single column layout */
+    padding: 0 0.5rem; /* Reduce grid padding for mobile */
   }
 
   .serviceCard {
-    height: 280px; /* Slightly smaller cards on mobile */
-  }
-
-  .cardTitle {
-    font-size: 1.4rem;
+    height: 250px; /* Further reduce card height for smaller mobile screens */
   }
 
   .popupContent {
-    padding: 1rem;
+    padding: 1rem; /* Further reduce popup content padding */
+  }
+
+  .tagList {
+    justify-content: center; /* Center tags when only one column */
+  }
+}
+
+@media (max-width: 400px) {
+  .servicesWrapper {
+    padding: 3rem 0.5rem; /* Minimal padding for very small screens */
+  }
+
+  .servicesHeader {
+    margin-bottom: 2.5rem; /* Adjust header margin */
+  }
+
+  .serviceCard {
+    height: 220px; /* Smallest card height for very compact screens */
+  }
+
+  .popupContent {
+    padding: 0.8rem; /* Minimal padding for popup content */
   }
 }

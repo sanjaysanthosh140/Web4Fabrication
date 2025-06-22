@@ -1,170 +1,259 @@
 .locationsContainer {
-    background-color: #000;
-    color: #fff;
-    padding: 4rem 2rem;
-    min-height: 80vh; /* Ensures sufficient height for the section */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  background-color: #000;
+  color: #fff;
+  padding: 6rem 2rem;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: background-color 0.5s ease; /* Smooth transition for hover effect */
+}
+
+.locationsContainer:hover {
+  background-color: #0a0a0a; /* Slightly lighter dark on hover for subtle feedback */
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 4rem;
+  max-width: 1400px;
+  width: 100%;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.textColumn {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-right: 2rem;
+}
+
+.sectionCategory {
+  color: #888;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.sectionTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #61dafb, #21a1f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.sectionDescription {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #bbb;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.locationItem {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.locationItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.locationItem h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #f0f0f0;
+}
+
+.locationItem p {
+  font-size: 1.05rem;
+  color: #aaa;
+  margin-bottom: 0.4rem;
+}
+
+.viewMapLink {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.viewMapLink:hover {
+  color: #21a1f1;
+  transform: translateX(5px);
+  border-color: #21a1f1;
+}
+
+.mapColumn {
+  flex: 2;
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  min-height: 500px;
+  aspect-ratio: 16 / 9;
+  /* Glass frame effect */
+  background: rgba(255, 255, 255, 0.05); /* Transparent white background */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+  backdrop-filter: blur(10px); /* Apply blur to content behind */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  transition: all 0.3s ease; /* Smooth transition for hover */
+}
+
+.mapColumn:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8); /* Deeper shadow on hover */
+  transform: scale(1.01); /* Slight scale up on hover */
+}
+
+.mapContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 8px; /* Ensure iframe matches mapColumn border-radius */
+  overflow: hidden; /* Crucial for clipping the iframe within the rounded glass frame */
+}
+
+.mapContainer iframe {
+  border-radius: 8px; /* Ensure the iframe itself also has rounded corners */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
   .contentWrapper {
-    display: flex;
-    gap: 4rem;
-    max-width: 1200px;
-    width: 100%;
-    align-items: flex-start; /* Align items to the top */
+    gap: 3rem;
   }
-  
-  .textColumn {
-    flex: 1; /* Allows this column to grow */
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .sectionCategory {
-    color: #aaa;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-  }
-  
+
   .sectionTitle {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: 3rem;
   }
-  
+
+  .textColumn {
+    padding-right: 1rem;
+  }
+
+  .mapColumn {
+    min-height: 450px;
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contentWrapper {
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    max-width: 800px;
+  }
+
+  .textColumn,
+  .mapColumn {
+    width: 100%;
+    max-width: 600px;
+    padding-right: 0;
+  }
+
+  .sectionTitle {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  .sectionCategory,
+  .sectionDescription,
+  .locationItem {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sectionDescription {
+    padding: 0 1rem;
+  }
+
+  .locationItem {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .mapColumn {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .locationsContainer {
+    padding: 4rem 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+
   .sectionDescription {
     font-size: 1.1rem;
-    line-height: 1.6;
-    color: #ccc;
-    margin-bottom: 2rem;
   }
-  
-  .locationList {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
+
   .locationItem h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
   }
-  
+
   .locationItem p {
-    font-size: 1rem;
-    color: #ccc;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
   }
-  
-  .viewMapLink {
-    color: #61dafb; /* Example link color */
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  .viewMapLink:hover {
-    color: #21a1f1;
-    text-decoration: underline;
-  }
-  
+
   .mapColumn {
-    flex: 2; /* Map column takes more space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 500px; /* Minimum height for the map placeholder */
+    min-height: 350px;
   }
-  
-  .mapPlaceholder {
-    background-color: #ccc;
-    border-radius: 8px;
-    width: 100%;
-    height: 100%;
-    max-height: 600px; /* Max height for the map */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .locationsContainer {
+    padding: 3rem 1rem;
   }
-  
-  .mapPinIcon {
-    color: #a0a0a0; /* Color of the map pin icon */
-    width: 100px;
-    height: 100px;
+
+  .sectionCategory {
+    font-size: 0.85rem;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 1024px) {
-    .contentWrapper {
-      flex-direction: column;
-      gap: 3rem;
-      align-items: center;
-    }
-  
-    .textColumn,
-    .mapColumn {
-      width: 100%;
-      max-width: 700px; /* Constrain width for better readability */
-    }
-  
-    .sectionTitle {
-      font-size: 2rem;
-    }
-  
-    .mapColumn {
-      min-height: 400px; /* Adjust height for smaller screens */
-    }
+
+  .sectionTitle {
+    font-size: 1.8rem;
   }
-  
-  @media (max-width: 768px) {
-    .locationsContainer {
-      padding: 3rem 1.5rem;
-    }
-  
-    .sectionTitle {
-      font-size: 1.8rem;
-    }
-  
-    .sectionDescription {
-      font-size: 1rem;
-    }
-  
-    .locationItem h3 {
-      font-size: 1.3rem;
-    }
-  
-    .mapColumn {
-      min-height: 300px;
-    }
+
+  .sectionDescription {
+    font-size: 1rem;
   }
-  
-  @media (max-width: 480px) {
-    .locationsContainer {
-      padding: 2rem 1rem;
-    }
-  
-    .sectionTitle {
-      font-size: 1.5rem;
-    }
-  
-    .sectionDescription {
-      font-size: 0.9rem;
-    }
-  
-    .locationItem h3 {
-      font-size: 1.2rem;
-    }
-  
-    .mapPinIcon {
-      width: 70px;
-      height: 70px;
-    }
+
+  .locationItem h3 {
+    font-size: 1.4rem;
   }
+
+  .mapColumn {
+    min-height: 280px;
+  }
+}

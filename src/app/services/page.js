@@ -75,23 +75,21 @@ const services = [
     image: fargola,
   },
   {
-  id: 9,
-  title: "🪟 Window Section",
-  image:window,
-},
-{
-  id: 10,
-  title: "🛐 Prayer Area",
-  image: prayer_room,
-},
+    id: 9,
+    title: "🪟 Window Section",
+    image:window,
+  },
+  {
+    id: 10,
+    title: "🛐 Prayer Area",
+    image: prayer_room,
+  },
   {
     id: 11,
     title: "🗄️ Aluminum Cabinet",
     image: cabinet,
   },
-
 ];
-
 
 export default function Services() {
   const [flipped, setFlipped] = useState([]);
@@ -105,7 +103,7 @@ export default function Services() {
   return (
     <section className={styles.servicesWrapper}>
       <header className={styles.servicesHeader}>
-        <p className={styles.pretitle}>Our Services</p>
+        {/* //<p className={styles.pretitle}>Our Services</p> */}
         <h2 className={styles.titleGradient}>Professional Aluminium Solutions</h2>
         <p className={styles.subtitle}>
           Delivering exceptional quality and precision across every project

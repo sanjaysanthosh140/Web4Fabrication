@@ -39,8 +39,6 @@ const services = [
     tags: ["Aluminum", "Interior", "Decoration"],
     description: "Artistic aluminum wall panels that add a unique texture and sophisticated touch to any interior design.",
   },
-
- 
   {
     id: 6,
     title: "🍽️ Kitchen Cupboard",
@@ -83,8 +81,6 @@ const services = [
     tags: ["Aluminum", "Storage", "Furniture"],
     description: "Custom-designed aluminum cabinets offering durable and lightweight storage solutions with sleek, modern aesthetics for any space.",
   },
-
-
 ];
 
 export default function Page() {
@@ -116,7 +112,7 @@ export default function Page() {
               className={`${styles.cardMedia} ${activeCardId === service.id ? styles.blurred : ''}`}
             />
 
-            <div className={styles.frostedGlassOverlay}></div> {/* Frosted glass effect */}
+            <div className={styles.frostedGlassOverlay}></div>
 
             <div className={styles.contentPopup}>
               <div className={styles.popupContent}>

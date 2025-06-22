@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000;
+   background-color:#0d0d0d;
   color: #fff;
   padding: 1rem 2rem;
-  height: 80px;
+  height: 90px;
   width: 100vw;
   box-sizing: border-box;
   position: fixed;
@@ -16,15 +16,20 @@
   margin: 0;
   padding-left: 0;
   padding-right: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .logo {
   margin-left: 2rem;
+  transition: transform 0.3s ease;
 }
 
-.logo img {
-  filter: brightness(0) invert(1); /* Makes the logo white */
+.logo:hover {
+  transform: scale(1.05);
 }
+
+  /* Makes the logo white */
+
 
 .navLinks {
   list-style: none;
@@ -34,6 +39,7 @@
   align-items: center;
   flex-grow: 1; /* Allows nav links to take available space */
   justify-content: flex-end; /* Pushes links to the right */
+  transition: all 0.3s ease;
 }
 
 .navLinks li {
@@ -47,11 +53,29 @@
   text-decoration: none;
   font-size: 1rem;
   padding: 0.5rem 0;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  position: relative;
 }
 
 .navLinks a:hover {
   color: #aaa;
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.navLinks a:hover::after {
+  width: 100%;
 }
 
 .dropdown {
@@ -115,34 +139,58 @@
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
 }
 
 /* Responsive adjustments */
+@media (max-width: 1200px) {
+  .navLinks li {
+    padding-right: 20px;
+    margin: 0 0.8rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .navLinks a {
+    font-size: 0.95rem;
+  }
+  
+  .navLinks li {
+    padding-right: 15px;
+    margin: 0 0.6rem;
+  }
+}
+
 @media (max-width: 768px) {
   .navBar {
     padding: 1rem 0;
     justify-content: flex-start;
     width: 100vw;
   }
-
+  
   .logo {
     margin-left: auto;
     margin-right: auto;
   }
-
+  
   .hamburger {
     display: block;
     margin-right: 0;
     order: -1;
     margin-left: 1rem;
+    z-index: 1001;
   }
-
+  
   .learnButton {
     margin-left: auto;
     margin-right: 1rem;
     padding: 0.6rem 1.2rem;
   }
-
+  
   .navLinks {
     display: none;
     flex-direction: column;
@@ -156,24 +204,53 @@
     z-index: 1000;
     align-items: center;
     margin: 0;
+    /* Modified to take only half of the screen */
+    height: 50vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #333;
   }
-
+  
   .navLinks.open {
     display: flex;
+    animation: slideDown 0.3s ease forwards;
   }
-
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
   .navLinks li {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     width: 100%;
     text-align: center;
+    padding-right: 0;
   }
-
+  
   .navLinks a {
     display: block;
     width: 100%;
-    padding: 1rem;
+    padding: 0.7rem;
+    font-size: 1.1rem;
   }
-
+  
+  .navLinks a::after {
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .navLinks a:hover::after {
+    width: 50%;
+  }
+  
   .dropdownContent {
     position: static;
     background-color: #111;
@@ -182,34 +259,93 @@
     padding: 0;
     display: none;
   }
-
+  
   .dropdownContent a {
     padding: 1rem;
     text-align: center;
   }
-
+  
   .dropdown:hover .dropdownContent {
     display: none;
   }
-
+  
   .dropdown.active .dropdownContent {
     display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .navBar {
+    padding: 0.8rem 0;
+    height: 70px;
+  }
+  
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .navLinks {
+    top: 70px;
+    /* Keep the half-screen height */
+    height: 50vh;
+  }
+  
+  .hamburger {
+    font-size: 1.8rem;
+  }
+  
+  .navLinks a {
+    font-size: 1rem;
   }
 }
 
 /* Additional breakpoint for very small screens */
 @media (max-width: 480px) {
   .navBar {
-    padding: 0.8rem;
+    padding: 0.8rem 0;
+    height: 60px;
   }
-
+  
+  .logo {
+    margin-left: 0;
+  }
+  
   .logo img {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
-
+  
+  .hamburger {
+    font-size: 1.6rem;
+    margin-left: 0.8rem;
+  }
+  
+  .navLinks {
+    top: 60px;
+    /* Keep the half-screen height */
+    height: 50vh;
+  }
+  
   .learnButton {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .hamburger {
+    font-size: 1.4rem;
+    margin-left: 0.6rem;
+  }
+  
+  .navLinks a {
+    font-size: 0.95rem;
+    padding: 0.8rem;
   }
 }

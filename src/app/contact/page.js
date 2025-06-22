@@ -9,30 +9,30 @@ import {
 import styles from './contact.module.css';
 
 const CONTACT_ITEMS = [
-  {
-    icon: <FiMail />,
-    title: 'Email',
-    blurb: 'Reach us anytime at our dedicated email address.',
-    action: 'info@aluminiumfabrication.com',
-  },
-  {
-    icon: <FiMessageCircle />,
-    title: 'Live chat',
-    blurb: 'Chat with our support team for immediate assistance.',
-    action: 'Start a chat',
-  },
+  // {
+    // icon: <FiMail />,
+    // title: 'Email',
+    // blurb: 'Reach us anytime at our dedicated email address.',
+    // action: 'info@aluminiumfabrication.com',
+  // },
+  // {
+    // icon: <FiMessageCircle />,
+    // title: 'Live chat',
+    // blurb: 'Chat with our support team for immediate assistance.',
+    // action: 'Start a chat',
+  // },
   {
     icon: <FiPhone />,
     title: 'Phone',
     blurb: 'Call us for quick answers to your questions.',
-    action: '+1 (555) 123‑4567',
+    action: '9605482721',
   },
-  {
-    icon: <FiMapPin />,
-    title: 'Office',
-    blurb: 'Visit us at our headquarters for personalized service.',
-    action: '456 Fabrication Lane, Sydney NSW 2000 AU',
-  },
+  // {
+    // icon: <FiMapPin />,
+    // title: 'Office',
+    // blurb: 'Visit us at our headquarters for personalized service.',
+    // action: '456 Fabrication Lane, Sydney NSW 2000 AU',
+  // },
 ];
 
 export default function ContactSection() {

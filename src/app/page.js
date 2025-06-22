@@ -132,7 +132,7 @@ const HeroSection = () => {
     <section className={styles.heroContainer}>
       <div className={styles.heroContent}>
         <h1 className={styles.heroTitle}>
-          Precision Aluminium Fabrication <br />
+          JS Aluminium Fabrication <br />
           for Every Need
         </h1>
         <p className={styles.heroDescription}>

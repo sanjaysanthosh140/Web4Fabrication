@@ -1,269 +1,274 @@
 .heroContainer {
-    background-color: #000;
-    color: #fff;
-    padding: 6rem 0 4rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: calc(100vh - 80px); /* Adjust for NavBar height */
-    box-sizing: border-box;
-    width: 100vw;
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
-    overflow-x: hidden;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-  }
-  
+  background-color: #000;
+  color: #fff;
+  padding: 6rem 0 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* Adjust for NavBar height */
+  box-sizing: border-box;
+  width: 100vw;
+  margin: 0;
+  /* Removed absolute positioning for simplicity and reliability,
+     overflow-x: hidden handles the horizontal scroll containers */
+  overflow-x: hidden;
+}
+
+.heroContent {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto 4rem; /* Center content and provide bottom margin */
+  padding: 0 2rem; /* Add horizontal padding for smaller screens */
+  box-sizing: border-box;
+}
+
+.heroTitle {
+  font-size: clamp(2.8rem, 5vw, 4rem); /* Improved fluid typography for title */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  text-align: center; /* Ensure title is centered */
+}
+
+.heroDescription {
+  font-size: clamp(1rem, 2vw, 1.2rem); /* Fluid typography for description */
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  color: #ccc;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; /* Center the description paragraph */
+  text-align: center; /* Ensure description is centered */
+  padding: 0 1rem; /* Add minor horizontal padding for small screens */
+}
+
+.heroButtons {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 1.5rem;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  text-align: center; /* Ensure button text is centered */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.primaryButton {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #fff;
+}
+
+.primaryButton:hover {
+  background-color: #eee;
+  border-color: #eee;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.secondaryButton:hover {
+  background-color: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.scrollContainer {
+  width: 100vw; /* Ensure full viewport width */
+  overflow-x: hidden; /* Hide scrollbars for the continuous effect */
+  position: relative; /* Needed for potential future positioning of elements */
+  margin: 2rem 0;
+  padding: 1rem 0;
+}
+
+.scrollContainer:first-of-type {
+  margin-top: 3rem;
+}
+
+.scrollContainer:last-of-type {
+  margin-bottom: 3rem;
+}
+
+.imageGrid {
+  display: flex;
+  gap: 2rem;
+  padding: 0 2rem; /* Consistent padding on sides */
+  width: max-content; /* Allows content to extend beyond viewport */
+}
+
+.reverseScroll { /* This class is not currently applied in the React component */
+  flex-direction: row-reverse;
+}
+
+.imageCard {
+  background-color: #222;
+  border: 1px solid #444;
+  border-radius: 12px;
+  width: 400px; /* Base width */
+  height: 250px; /* Base height */
+  flex-shrink: 0; /* Prevents cards from shrinking */
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.imageCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cardContent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+}
+
+.placeholderIcon {
+  width: 40%;
+  height: 40%;
+  color: #666;
+  transition: transform 0.3s ease;
+}
+
+.imageCard:hover .placeholderIcon {
+  transform: scale(1.1);
+}
+
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 1.5rem 1rem 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  text-align: center; /* Ensure overlay text is centered */
+}
+
+.imageCard:hover .cardOverlay {
+  transform: translateY(0);
+}
+
+.cardOverlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.cardOverlay p {
+  margin: 0.5rem 0 0;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
   .heroContent {
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto 4rem;
-    padding: 0 2rem;
-    box-sizing: border-box;
+    width: 95%;
+    padding: 0 1.5rem;
   }
-  
-  .heroTitle {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
+
+  .imageCard {
+    width: 350px;
+    height: 220px;
   }
-  
-  .heroDescription {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 1.6;
-    margin-bottom: 2.5rem;
-    color: #ccc;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .heroContainer {
+    padding: 5rem 0 3rem;
   }
-  
-  .heroButtons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  
-  .primaryButton,
-  .secondaryButton {
-    padding: 1rem 2.5rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 180px;
-  }
-  
-  .primaryButton {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #fff;
-  }
-  
-  .primaryButton:hover {
-    background-color: #eee;
-    border-color: #eee;
-    transform: translateY(-2px);
-  }
-  
-  .secondaryButton {
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-  }
-  
-  .secondaryButton:hover {
-    background-color: #fff;
-    color: #000;
-    transform: translateY(-2px);
-  }
-  
-  .scrollContainer {
-    width: 100vw;
-    overflow-x: hidden;
-    position: relative;
-    margin: 2rem 0;
-    padding: 1rem 0;
-  }
-  
-  .scrollContainer:first-of-type {
-    margin-top: 3rem;
-  }
-  
-  .scrollContainer:last-of-type {
+
+  .heroContent {
+    width: 100%;
+    padding: 0 1.5rem;
     margin-bottom: 3rem;
   }
-  
-  .imageGrid {
-    display: flex;
-    gap: 2rem;
-    padding: 0 2rem;
-    width: max-content;
+
+  .heroButtons {
+    gap: 1rem;
+    flex-direction: column; /* Stack buttons on smaller screens */
+    align-items: center; /* Center stacked buttons */
   }
-  
-  .reverseScroll {
-    flex-direction: row-reverse;
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    min-width: unset; /* Remove min-width to allow full width for stacked buttons */
+    width: 80%; /* Make buttons take up a good portion of the width */
+    max-width: 300px; /* Limit max width for stacked buttons */
   }
-  
+
   .imageCard {
-    background-color: #222;
-    border: 1px solid #444;
-    border-radius: 12px;
-    width: 400px;
-    height: 250px;
-    flex-shrink: 0;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    width: 300px;
+    height: 200px;
   }
-  
-  .imageCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+  .imageGrid {
+    gap: 1.5rem;
+    padding: 0 1.5rem;
   }
-  
-  .cardContent {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+}
+
+@media (max-width: 480px) {
+  .heroContainer {
+    padding: 4rem 0 2rem;
   }
-  
-  .placeholderIcon {
-    width: 40%;
-    height: 40%;
-    color: #666;
-    transition: transform 0.3s ease;
+
+  .heroContent {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
   }
-  
-  .imageCard:hover .placeholderIcon {
-    transform: scale(1.1);
+
+  .heroButtons {
+    /* Already flex-direction: column and align-items: center from 768px */
   }
-  
-  .cardOverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    padding: 1.5rem 1rem 1rem;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+
+  .primaryButton,
+  .secondaryButton {
+    max-width: 250px; /* Further constrain max-width for very small screens */
+    font-size: 0.95rem;
+    padding: 0.7rem 1.5rem;
   }
-  
-  .imageCard:hover .cardOverlay {
-    transform: translateY(0);
+
+  .imageCard {
+    width: 250px;
+    height: 180px;
   }
-  
+
+  .imageGrid {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
   .cardOverlay h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #fff;
-    font-weight: 600;
+    font-size: 1.1rem;
   }
-  
+
   .cardOverlay p {
-    margin: 0.5rem 0 0;
-    color: #ccc;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 1200px) {
-    .heroContent {
-      width: 95%;
-      padding: 0 1.5rem;
-    }
-  
-    .imageCard {
-      width: 350px;
-      height: 220px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .heroContainer {
-      padding: 5rem 0 3rem;
-    }
-  
-    .heroContent {
-      width: 100%;
-      padding: 0 1.5rem;
-      margin-bottom: 3rem;
-    }
-  
-    .heroButtons {
-      gap: 1rem;
-    }
-  
-    .primaryButton,
-    .secondaryButton {
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      min-width: 160px;
-    }
-  
-    .imageCard {
-      width: 300px;
-      height: 200px;
-    }
-  
-    .imageGrid {
-      gap: 1.5rem;
-      padding: 0 1.5rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .heroContainer {
-      padding: 4rem 0 2rem;
-    }
-  
-    .heroContent {
-      padding: 0 1rem;
-      margin-bottom: 2rem;
-    }
-  
-    .heroButtons {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .primaryButton,
-    .secondaryButton {
-      width: 100%;
-      max-width: 280px;
-    }
-  
-    .imageCard {
-      width: 250px;
-      height: 180px;
-    }
-  
-    .imageGrid {
-      gap: 1rem;
-      padding: 0 1rem;
-    }
-  
-    .cardOverlay h3 {
-      font-size: 1.1rem;
-    }
-  
-    .cardOverlay p {
-      font-size: 0.8rem;
-    }
-  }
+}
